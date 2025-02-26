@@ -1,6 +1,6 @@
 # Neo 2 for ErgoDox on QWERTZ
 
-Based on [ergodox_osx_neo2](https://github.com/mjonuschat/ergodox_osx_neo2) by [mjonuschat](https://github.com/mjonuschat).
+Based on [ergodox_osx_neo2](https://github.com/mjonuschat/ergodox_osx_neo2) by [mjonuschat](https://github.com/mjonuschat), built for the [Ergodox EZ](https://ergodox-ez.com/).
 
 # Description
 
