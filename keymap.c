@@ -55,18 +55,6 @@ enum custom_keycodes {
 #define NEO2_L3_SUPERSCRIPT_1        RALT(DE_1)                  // ¹
 #define NEO2_L3_SUPERSCRIPT_2        DE_SUP2                     // ²
 #define NEO2_L3_SUPERSCRIPT_3        DE_SUP3                     // ³
-#define NEO2_L3_RSAQUO               RSA(DE_Y)                   // ›
-#define NEO2_L3_LSAQUO               RSA(DE_X)                   // ‹
-#define NEO2_L3_RAQUO                RALT(DE_Y)                  // »  TODO: remove this
-#define NEO2_L3_LAQUO                RALT(DE_X)                  // «  TODO: remove this
-#define NEO2_L3_CENT                 RALT(DE_C)                  // ¢  TODO: remove this
-#define NEO2_L3_YEN                  RSA(DE_Z)                   // ¥  TODO: remove this
-#define NEO2_L3_SBQUO                RSA(DE_V)                   // ‚  TODO: remove this
-#define NEO2_L3_LEFT_SINGLE_QUOTE    RSA(DE_B)                   // ‘  TODO: remove this
-#define NEO2_L3_RIGHT_SINGLE_QUOTE   RSA(DE_N)                   // ’  TODO: remove this
-#define NEO2_L3_LOW9_DBQUOTE         RALT(DE_V)                  // „  TODO: remove this
-#define NEO2_L3_LEFT_DBQUOTE         RALT(DE_B)                  // “  TODO: remove this
-#define NEO2_L3_RIGHT_DBQUOTE        RALT(DE_N)                  // ”  TODO: remove this
 #define NEO2_L3_ELLIPSIS             RALT(DE_DOT)                // …
 #define NEO2_L3_UNDERSCORE           DE_UNDS                     // _
 #define NEO2_L3_LBRACKET             DE_LBRC                     // [
@@ -77,7 +65,6 @@ enum custom_keycodes {
 #define NEO2_L3_GREATERTHAN          DE_RABK                     // >
 #define NEO2_L3_EQUAL                DE_EQL                      // =
 #define NEO2_L3_AMPERSAND            DE_AMPR                     // &
-#define NEO2_L3_SMALL_LONG_S         RALT(DE_S)                  // ſ  TODO: remove this
 #define NEO2_L3_BSLASH               DE_BSLS                     // (backslash)
 #define NEO2_L3_SLASH                DE_SLSH                     // /
 #define NEO2_L3_CLBRACKET            DE_LCBR                     // {
@@ -100,17 +87,10 @@ enum custom_keycodes {
 #define NEO2_L3_SEMICOLON            DE_SCLN                     // ;
 
 // NEO_4 special characters
-#define NEO2_L3_FEMININE_ORDINAL     RSA(DE_F)                   // ª  TODO: remove this
-#define NEO2_L3_MASCULINE_ORDINAL    RSA(DE_M)                   // º  TODO: remove this
-#define NEO2_L3_NUMERO_SIGN          KC_NO                       // №  TODO: remove this
 #define NEO2_L3_MIDDLE_DOT           RALT(DE_COMM)               // ·
-#define NEO2_L3_BRITISH_POUND        RSA(DE_3)                   // £  TODO: remove this
-#define NEO2_L3_CURRENCY_SIGN        RSA(DE_4)                   // ¤  TODO: remove this
 #define NEO2_L3_INV_EXCLAMATION      RSA(DE_1)                   // ¡
 #define NEO2_L3_INV_QUESTIONMARK     RSA(DE_SS)                  // ¿
 #define NEO2_L3_DOLLAR               DE_DLR                      // $
-#define NEO2_L3_EN_DASH              RALT(DE_MINS)               // –  TODO: remove this
-#define NEO2_L3_EM_DASH              RSA(DE_MINS)                // —  TODO: remove this
 
 // My own special things
 #define YELDIR_MOVETABLEFT           LCTL(LSFT(KC_PGDN))
@@ -167,9 +147,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* NEO_3: Symbol layer
    *
    * ,--------------------------------------------------.           ,--------------------------------------------------.
-   * |  ----  | ---- | ---- | ---- |   ›  |   ‹  |      |           |      |   ¢ 	|   ¥  |   ‚  |   ‘  |   ’  |  ----  |
+   * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-   * |  ----  |   …  |   _  |   [  |   ]  |   ^  | MOVE |           | MOVE |   !  |   <  |   >  |   =  |   &  |  ----  |
+   * |        |   …  |   _  |   [  |   ]  |   ^  | MOVE |           | MOVE |   !  |   <  |   >  |   =  |   &  |        |
    * |--------+------+------+------+------+------| TAB<-|           | TAB->|------+------+------+------+------+--------|
    * |        |   \  |   /  |   {  |   }  |   *  |------|           |------|   ?  |   (  |   )  |   -  |   :  |   @    |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -187,8 +167,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [NEO_3] = LAYOUT_ergodox(
     // left hand side - main
-    KC_NO /* NOOP */,   KC_NO /* NOOP */,      KC_NO /* NOOP */,      KC_NO /* NOOP */,      NEO2_L3_RSAQUO,            NEO2_L3_LSAQUO,                _______,
-    KC_NO /* NOOP */,   NEO2_L3_ELLIPSIS,      NEO2_L3_UNDERSCORE,    NEO2_L3_LBRACKET,      NEO2_L3_RBRACKET,          NEO2_L3_CIRCUMFLEX,            YELDIR_MOVETABLEFT,
+    _______,            _______,               _______,               _______,               _______,                    _______,                      _______,
+    _______,            NEO2_L3_ELLIPSIS,      NEO2_L3_UNDERSCORE,    NEO2_L3_LBRACKET,      NEO2_L3_RBRACKET,          NEO2_L3_CIRCUMFLEX,            YELDIR_MOVETABLEFT,
     _______,            NEO2_L3_BSLASH,        NEO2_L3_SLASH,         NEO2_L3_CLBRACKET,     NEO2_L3_CRBRACKET,         NEO2_L3_ASTERISK,              /* --- */
     _______,            NEO2_L3_HASH,          NEO2_L3_DOLLAR,        NEO2_L3_PIPE,          NEO2_L3_TILDE,             NEO2_L3_BACKTICK,              _______,
     _______,            _______,               _______,               _______,               _______,                   /* --- */                      /* --- */
@@ -199,8 +179,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,            _______,              _______,
 
     // right hand side - main
-    _______,            NEO2_L3_CENT,          NEO2_L3_YEN,           NEO2_L3_SBQUO,         NEO2_L3_LEFT_SINGLE_QUOTE,  NEO2_L3_RIGHT_SINGLE_QUOTE,   KC_NO,
-    YELDIR_MOVETABRIGHT,NEO2_L3_EXCLAMATION,   NEO2_L3_LESSTHAN,      NEO2_L3_GREATERTHAN,   NEO2_L3_EQUAL,              NEO2_L3_AMPERSAND,            NEO2_L3_SMALL_LONG_S,
+    _______,            _______,               _______,               _______,               _______,                    _______,                      _______,
+    YELDIR_MOVETABRIGHT,NEO2_L3_EXCLAMATION,   NEO2_L3_LESSTHAN,      NEO2_L3_GREATERTHAN,   NEO2_L3_EQUAL,              NEO2_L3_AMPERSAND,            _______,
     /* --- */           NEO2_L3_QUESTIONMARK,  NEO2_L3_LPARENTHESES,  NEO2_L3_RPARENTHESES,  NEO2_L3_HYPHEN_MINUS,       NEO2_L3_COLON,                DE_AT,
     _______,            NEO2_L3_PLUS,          NEO2_L3_PERCENT,       NEO2_L3_DOUBLE_QUOTE,  NEO2_L3_SINGLE_QUOTE,       NEO2_L3_SEMICOLON,            _______,
     /* --- */           /* --- */              _______,               _______,               _______,                    _______,                      _______,
@@ -214,13 +194,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* NEO_4: Cursor & Numpad
    *
    * ,--------------------------------------------------.           ,--------------------------------------------------.
-   * |  ----  |   ª  |   º  | ---- |   ·  |   £  |      |           |      | ---- | Tab  |   /  |   *  |   -  |  ----  |
+   * |        |      |      |      |   ·  |      |      |           |      |      | Tab  |   /  |   *  |   -  |        |
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-   * |  ----  | PgUp |   ⌫  |  Up  |   ⌦  | PgDn |      |           |      |   ¡  |   7  |   8  |   9  |   +  |   –    |
+   * |        | PgUp |   ⌫  |  Up  |   ⌦  | PgDn |      |           |      |   ¡  |   7  |   8  |   9  |   +  |        |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-   * |        | Home | Left | Down | Right| End  |------|           |------|   ¿  |   4  |   5  |   6  |   ,  |   .    |
+   * |        | Home | Left | Down | Right| End  |------|           |------|   ¿  |   4  |   5  |   6  |   ,  |        |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
-   * |        | Esc  | Tab  | Ins  |Return| ---- |      |           |      |   :  |   1  |   2  |   3  |   ;  |        |
+   * |        | Esc  | Tab  | Ins  |Return|      |      |           |      |   :  |   1  |   2  |   3  |   ;  |        |
    * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
    *   |      |      |      |      |      |                                       |      |   0  |      |      |      |
    *   `----------------------------------'                                       `----------------------------------'
@@ -234,10 +214,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
   [NEO_4] = LAYOUT_ergodox(
     // left hand side - main
-    KC_NO /* NOOP */,   NEO2_L3_FEMININE_ORDINAL, NEO2_L3_MASCULINE_ORDINAL,KC_NO /* NOOP */,     NEO2_L3_MIDDLE_DOT, NEO2_L3_BRITISH_POUND, _______,
+    _______,            _______,                  _______,                  _______,              NEO2_L3_MIDDLE_DOT, _______,               _______,
     _______,            KC_PGUP,                  KC_BSPC,                  KC_UP,                KC_DELETE,          KC_PGDN,               _______,
     _______,            KC_HOME,                  KC_LEFT,                  KC_DOWN,              KC_RIGHT,           KC_END,                /* --- */
-    _______,            KC_ESCAPE,                KC_TAB,                   KC_INSERT,            KC_ENTER,           KC_NO /* NOOP */,      _______,
+    _______,            KC_ESCAPE,                KC_TAB,                   KC_INSERT,            KC_ENTER,           _______,               _______,
     _______,            _______,                  _______,                  _______,              _______,            /* --- */              /* --- */
 
     // left hand side - thumb cluster
@@ -246,9 +226,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,            _______,                  _______,
 
     // right hand side - main
-    _______,            NEO2_L3_CURRENCY_SIGN,     KC_TAB,                   NEO2_L3_SLASH,     DE_ASTR,         DE_MINS,              KC_NO /* NOOP */,
-    _______,            NEO2_L3_INV_EXCLAMATION,   KC_7,                     KC_8,              KC_9,            DE_PLUS,              NEO2_L3_EM_DASH,
-    /* --- */           NEO2_L3_INV_QUESTIONMARK,  KC_4,                     KC_5,              KC_6,            DE_COMM,              KC_DOT,
+    _______,            _______,                   KC_TAB,                   NEO2_L3_SLASH,     DE_ASTR,         DE_MINS,              _______,
+    _______,            NEO2_L3_INV_EXCLAMATION,   KC_7,                     KC_8,              KC_9,            DE_PLUS,              _______,
+    /* --- */           NEO2_L3_INV_QUESTIONMARK,  KC_4,                     KC_5,              KC_6,            DE_COMM,              _______,
     _______,            NEO2_L3_COLON,             KC_1,                     KC_2,              KC_3,            NEO2_L3_SEMICOLON,    _______,
     /* --- */           /* --- */                 _______,                   KC_0,              _______,         _______,              _______,
 
@@ -678,7 +658,6 @@ void matrix_scan_user(void) {
     ergodox_right_led_2_off();
     ergodox_right_led_3_off();
     switch (layer) {
-      // TODO: Make this relevant to the ErgoDox EZ.
         case NEO_3:
             ergodox_right_led_1_on();
             break;
