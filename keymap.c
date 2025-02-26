@@ -149,7 +149,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,--------------------------------------------------.           ,--------------------------------------------------.
    * |        |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
    * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
-   * |        |   …  |   _  |   [  |   ]  |   ^  | MOVE |           | MOVE |   !  |   <  |   >  |   =  |   &  |        |
+   * |        |   …  |   _  |   [  |   ]  |   ^  | MOVE |           | MOVE |   !  |   <  |   >  |   =  |   &  |   €    |
    * |--------+------+------+------+------+------| TAB<-|           | TAB->|------+------+------+------+------+--------|
    * |        |   \  |   /  |   {  |   }  |   *  |------|           |------|   ?  |   (  |   )  |   -  |   :  |   @    |
    * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -180,7 +180,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // right hand side - main
     _______,            _______,               _______,               _______,               _______,                    _______,                      _______,
-    YELDIR_MOVETABRIGHT,NEO2_L3_EXCLAMATION,   NEO2_L3_LESSTHAN,      NEO2_L3_GREATERTHAN,   NEO2_L3_EQUAL,              NEO2_L3_AMPERSAND,            _______,
+    YELDIR_MOVETABRIGHT,NEO2_L3_EXCLAMATION,   NEO2_L3_LESSTHAN,      NEO2_L3_GREATERTHAN,   NEO2_L3_EQUAL,              NEO2_L3_AMPERSAND,            DE_EURO,
     /* --- */           NEO2_L3_QUESTIONMARK,  NEO2_L3_LPARENTHESES,  NEO2_L3_RPARENTHESES,  NEO2_L3_HYPHEN_MINUS,       NEO2_L3_COLON,                DE_AT,
     _______,            NEO2_L3_PLUS,          NEO2_L3_PERCENT,       NEO2_L3_DOUBLE_QUOTE,  NEO2_L3_SINGLE_QUOTE,       NEO2_L3_SEMICOLON,            _______,
     /* --- */           /* --- */              _______,               _______,               _______,                    _______,                      _______,
