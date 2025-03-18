@@ -1,33 +1,19 @@
-# Neo 2 for ErgoDox on QWERTZ
+# NEO2 for ErgoDox EZ on QWERTZ
 
-Based on [ergodox_osx_neo2](https://github.com/mjonuschat/ergodox_osx_neo2) by [mjonuschat](https://github.com/mjonuschat), built for the [Ergodox EZ](https://ergodox-ez.com/).
-
-# Description
-
-The Neo layout is an optimized German keyboard layout developed by the
-Neo Users Group, supporting many Latin-based alphabets. The positions
-of the letters are not only optimized for German letter frequency,
-but also for typical groups of two or three letters.  English is
-considered a primary target as well.
-
-The design tries to enforce the alternating usage of both hands to
-increase typing speed  and incorporates ideas from de-ergo and other
-ergonomic layouts. High frequency keys are placed in the home row.
-The current layout Neo 2.0 has unique features making it suited for
-many target groups such as programmers, mathematicians, scientists or
-LaTeX authors.
-
-Neo is grouped into six layers, each dedicated to a special purpose.
+Inspired by [ergodox_osx_neo2](https://github.com/mjonuschat/ergodox_osx_neo2) by [mjonuschat](https://github.com/mjonuschat), built for the [Ergodox EZ](https://ergodox-ez.com/).
 
 # Layers
 
-At the core this is a Neo 2.0 layout adjusted for the Ergodox Infinity.
-The keymap is laid out expecting gnu/linux using the german QWERTZ layout.
+This is a Neo 2.0 layout adjusted for the [ErgoDox EZ](https://ergodox-ez.com/). It is my personal
+optimization and I will not take requests. If you like it, feel free to use it,
+tweak it, whatever.
+
+I also have an [alternative layout for the Corne Keyboard](https://github.com/yeldiRium/qmk-crkbd-neo2).
 
 [Layer 1](#layer-1) Lowercase, upppercase and typographical characters
 [Layer 2](#layer-2) Special characters for programming
 [Layer 3](#layer-3) WASD-like movement keys and number block
-[Layer 4](#layer-4) Rough de quertz layout
+[Layer 4](#layer-4) Rough de qwertz layout
 [Layer 5](#layer-5) Function keys
 [Layer 6](#layer-6) Cursor movement
 
@@ -44,7 +30,7 @@ This layer implements NEO layers 1 and 2.
 ```
 NEO_1: Basic layer
 
-,--------------------------------------------------.           ,----------------------------------------------.
+,------------------------------------------------.           ,------------------------------------------------.
 | ---- |  1/° |  2/§ |  3/¹ |  4/» |  5/« | ---- |           |  DE  |  6/$ |  7/€ |  8/„ |  9/“ |  0/” | -/—  |
 |------+------+------+------+------+-------------|           |------+------+------+------+------+------+------|
 | TAB  |   X  |   V  |   L  |   C  |   W  | MOVE |           | MOVE |   K  |   H  |   G  |   F  |   Q  |   ß  |
