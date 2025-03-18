@@ -33,6 +33,7 @@ enum custom_keycodes {
   N2_SS
 };
 
+// layer mods
 #define N2_NEO3     MO(_NEO_3)
 #define N2_NEO4     MO(_NEO_4)
 #define YL_QWER     TO(_QWERT)
