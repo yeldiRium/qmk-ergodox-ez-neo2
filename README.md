@@ -4,7 +4,7 @@ Inspired by [ergodox_osx_neo2](https://github.com/mjonuschat/ergodox_osx_neo2) b
 
 ## Layers
 
-This is a Neo 2.0 layout adjusted for the [ErgoDox EZ](https://ergodox-ez.com/). It is my personal
+This is a [Neo 2.0](https://www.neo-layout.org/) layout adjusted for the [ErgoDox EZ](https://ergodox-ez.com/). It is my personal
 optimization and I will not take requests. If you like it, feel free to use it,
 tweak it, whatever.
 
