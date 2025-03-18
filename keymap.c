@@ -17,21 +17,20 @@ enum layers {
 // Used to trigger macros / sequences of keypresses
 enum custom_keycodes {
   PLACEHOLDER = SAFE_RANGE,     // can always be here
-  YELDIR_AC,
-  NEO2_1,
-  NEO2_2,
-  NEO2_3,
-  NEO2_4,
-  NEO2_5,
-  NEO2_6,
-  NEO2_7,
-  NEO2_8,
-  NEO2_9,
-  NEO2_0,
-  NEO2_MINUS,
-  NEO2_COMMA,
-  NEO2_DOT,
-  NEO2_SHARP_S
+  N2_1,
+  N2_2,
+  N2_3,
+  N2_4,
+  N2_5,
+  N2_6,
+  N2_7,
+  N2_8,
+  N2_9,
+  N2_0,
+  N2_MINS,
+  N2_COMM,
+  N2_DOT,
+  N2_SS
 };
 
 #define N2_NEO3     MO(_NEO_3)
@@ -44,7 +43,6 @@ enum custom_keycodes {
 #define N2_ELL      RALT(DE_DOT)                // …
 
 // NEO_4 special characters
-#define N2_MDOT     RALT(DE_COMM)               // ·
 #define N2_IEXC     RSA(DE_1)                   // ¡
 #define N2_IQUE     RSA(DE_SS)                  // ¿
 
@@ -53,167 +51,113 @@ enum custom_keycodes {
 #define YL_TABR     LCTL(KC_TAB)
 #define YL_MTBL     LCTL(LSFT(KC_PGUP))
 #define YL_MTBR     LCTL(LSFT(KC_PGDN))
-
-//  [_TMPL] = LAYOUT_ergodox(
-//    // left hand side - main
-//    _______, _______, _______, _______, _______, _______, _______,
-//    _______, _______, _______, _______, _______, _______, _______,
-//    _______, _______, _______, _______, _______, _______,
-//    _______, _______, _______, _______, _______, _______, _______,
-//    _______, _______, _______, _______, _______,
-//
-//    // left hand side - thumb cluster
-//             _______, _______,
-//                      _______,
-//    _______, _______, _______,
-//
-//    // right hand side - main
-//    _______, _______, _______, _______, _______, _______, _______,
-//    _______, _______, _______, _______, _______, _______, _______,
-//             _______, _______, _______, _______, _______, _______,
-//    _______, _______, _______, _______, _______, _______, _______,
-//                      _______, _______, _______, _______, _______,
-//
-//    // right hand side - thumb cluster
-//    _______, _______,
-//    _______,
-//    _______, _______, _______,
-//  ),
+#define YL_SAVE     LCTL(DE_S)
+#define YL_AC       LCTL(KC_LALT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_NEO_1] = LAYOUT_ergodox(
-    // left hand side - main
-    KC_NO /* NOOP */, NEO2_1,                   NEO2_2,                   NEO2_3,                   NEO2_4,           NEO2_5,           KC_NO,
-    KC_TAB,           DE_X,                     DE_V,                     DE_L,                     DE_C,             DE_W,             YL_TABL,
-    N2_NEO3,       DE_U,                     DE_I,                     DE_A,                     DE_E,             DE_O,
-    KC_LSFT,          DE_UDIA,                  DE_ODIA,                  DE_ADIA,                  DE_P,             DE_Z,             KC_MS_BTN1,
-    KC_MS_WH_LEFT,    KC_MS_WH_DOWN,            KC_MS_WH_UP,              KC_MS_WH_RIGHT,           N2_NEO4,
-
-    // left hand side - thumb cluster
-                      KC_APPLICATION,   LCTL(DE_S),
-                                        YELDIR_AC,
-    KC_LGUI,          KC_LALT,          KC_LCTL,
-
-    // right hand side - main
-    YL_QWER,    NEO2_6,           NEO2_7,           NEO2_8,           NEO2_9,           NEO2_0,           NEO2_MINUS,
-    YL_TABR,    DE_K,             DE_H,             DE_G,             DE_F,             DE_Q,             NEO2_SHARP_S,
-                      DE_S,             DE_N,             DE_R,             DE_T,             DE_D,             DE_Y,
-    KC_MS_BTN2,       DE_B,             DE_M,             NEO2_COMMA,       NEO2_DOT,         DE_J,             KC_RSFT,
-                                        N2_NEO4,       KC_MS_LEFT,       KC_MS_DOWN,       KC_MS_UP,         KC_MS_RIGHT,
-
-    // right hand side - thumb cluster
-    KC_NO,            YL_FKEY,
-    YELDIR_AC,
-    KC_RCTL,          KC_RALT,          KC_SPACE
+  [_NEO_1] = LAYOUT_ergodox_pretty(
+ //,-------------------------------------------------------------.      ,-------------------------------------------------------------.
+      KC_NO,    N2_1,    N2_2,    N2_3,    N2_4,    N2_5,   KC_NO,       YL_QWER,    N2_6,    N2_7,    N2_8,    N2_9,    N2_0, N2_MINS,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+     KC_TAB,    DE_X,    DE_V,    DE_L,    DE_C,    DE_W, YL_TABL,       YL_TABR,    DE_K,    DE_H,    DE_G,    DE_F,    DE_Q,   N2_SS,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    N2_NEO3,    DE_U,    DE_I,    DE_A,    DE_E,    DE_O,                            DE_S,    DE_N,    DE_R,    DE_T,    DE_D,    DE_Y,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    KC_LSFT, DE_UDIA, DE_ODIA, DE_ADIA,    DE_P,    DE_Z, MS_BTN1,       MS_BTN2,    DE_B,    DE_M, N2_COMM,  N2_DOT,    DE_J, KC_RSFT,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    _______, _______, _______, _______, N2_NEO4,                                           N2_NEO4, _______, _______, _______, _______,
+ //`-------------------------------------------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------'
+                                                  KC_APP, YL_SAVE,         KC_NO, YL_FKEY,
+                                             //+--------+--------|      |       +--------+
+                                                            YL_AC,         YL_AC,
+                                     //,       |        |--------|      |-------|        |        |
+                                        KC_LGUI, KC_LALT, KC_LCTL,       KC_RCTL, KC_RALT,  KC_SPC
+                                     //`-------------------------'      `-------------------------'
   ),
 
-  [_NEO_3] = LAYOUT_ergodox(
-    // left hand side - main
-    _______,            _______,               _______,               _______,               _______,                    _______,                      _______,
-    _______,            N2_ELL,      DE_UNDS,    DE_LBRC,      DE_RBRC,          DE_CIRC,            YL_MTBL,
-    _______,            DE_BSLS,        DE_SLSH,         DE_LCBR,     DE_RCBR,         DE_ASTR,
-    _______,            DE_HASH,          DE_DLR,        DE_PIPE,          DE_TILD,             DE_GRV,              _______,
-    _______,            _______,               _______,               _______,               _______,
-
-    // left hand side - thumb cluster
-                        _______,              _______,
-                                              _______,
-    _______,            _______,              _______,
-
-    // right hand side - main
-    _______,            _______,               _______,               _______,               _______,                    _______,                      _______,
-    YL_MTBR,DE_EXLM,   DE_LABK,      DE_RABK,   DE_EQL,              DE_AMPR,            DE_EURO,
-                        DE_QUES,  DE_LPRN,  DE_RPRN,  DE_MINS,       DE_COLN,                DE_AT,
-    _______,            DE_PLUS,          DE_PERC,       DE_DQUO,  DE_QUOT,       DE_SCLN,            _______,
-                                               _______,               _______,               _______,                    _______,                      _______,
-
-    // right hand side - thumb cluster
-    _______,            _______,
-    _______,
-    _______,            _______,              _______
+  [_NEO_3] = LAYOUT_ergodox_pretty(
+ //,-------------------------------------------------------------.      ,-------------------------------------------------------------.
+    _______, _______, _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______, _______, _______, 
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    _______,  N2_ELL, DE_UNDS, DE_LBRC, DE_RBRC, DE_CIRC, YL_MTBL,       YL_MTBR, DE_EXLM, DE_LABK, DE_RABK,  DE_EQL, DE_AMPR, DE_EURO,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    _______, DE_BSLS, DE_SLSH, DE_LCBR, DE_RCBR, DE_ASTR,                         DE_QUES, DE_LPRN, DE_RPRN, DE_MINS, DE_COLN,   DE_AT,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    _______, DE_HASH,  DE_DLR, DE_PIPE, DE_TILD,  DE_GRV, _______,       _______, DE_PLUS, DE_PERC, DE_DQUO, DE_QUOT, DE_SCLN, _______,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    _______, _______, _______, _______, _______,                                          _______,  _______, _______, _______, _______,
+ //`-------------------------------------------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------'
+                                                 _______, _______,       _______, _______,
+                                             //+--------+--------|      |       +--------+
+                                                          _______,       _______, 
+                                     //,       |        |--------|      |-------|        |        |
+                                        _______, _______, _______,       _______, _______, _______
+                                     //`-------------------------'      `-------------------------'
   ),
 
-  [_NEO_4] = LAYOUT_ergodox(
-    // left hand side - main
-    _______,            _______,                  _______,                  _______,              N2_MDOT, _______,               _______,
-    _______,            KC_PGUP,                  KC_BSPC,                  KC_UP,                KC_DELETE,          KC_PGDN,               _______,
-    _______,            KC_HOME,                  KC_LEFT,                  KC_DOWN,              KC_RIGHT,           KC_END,
-    _______,            KC_ESCAPE,                KC_TAB,                   KC_INSERT,            KC_ENTER,           _______,               _______,
-    _______,            _______,                  _______,                  _______,              _______,
-
-    // left hand side - thumb cluster
-                        _______,                  _______,
-                                                  _______,
-    _______,            _______,                  _______,
-
-    // right hand side - main
-    _______,            _______,                   KC_TAB,                   DE_SLSH,     DE_ASTR,         DE_MINS,              _______,
-    _______,            N2_IEXC,   KC_7,                     KC_8,              KC_9,            DE_PLUS,              _______,
-                        N2_IQUE,  KC_4,                     KC_5,              KC_6,            DE_COMM,              DE_DOT,
-    _______,            DE_COLN,             KC_1,                     KC_2,              KC_3,            DE_SCLN,    _______,
-                                                  _______,                   KC_0,              _______,         _______,              _______,
-
-    // right hand side - thumb cluster
-    _______,            _______,
-    _______,
-    _______,            _______,                  _______
+  [_NEO_4] = LAYOUT_ergodox_pretty(
+ //,-------------------------------------------------------------.      ,-------------------------------------------------------------.
+    _______, _______, _______, _______, _______, _______, _______,       _______, _______,  KC_TAB, DE_SLSH, DE_ASTR, DE_MINS, _______,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    _______, KC_PGUP, KC_BSPC,   KC_UP,  KC_DEL, KC_PGDN, _______,       _______, N2_IEXC,    KC_7,    KC_8,    KC_9, DE_PLUS, _______,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    _______, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT,  KC_END,                         N2_IQUE,    KC_4,    KC_5,    KC_6, DE_COMM,  DE_DOT,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    _______,  KC_ESC,  KC_TAB,  KC_INS,  KC_ENT, KC_UNDO, _______,       _______, DE_COLN,    KC_1,    KC_2,    KC_3, DE_SCLN, _______,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    _______, _______, _______, _______, _______,                                          _______,     KC_0, _______, _______, _______,
+ //`-------------------------------------------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------'
+                                                 _______, _______,       _______, _______,
+                                             //+--------+--------|      |       +--------+
+                                                          _______,       _______, 
+                                     //,       |        |--------|      |-------|        |        |
+                                        _______, _______, _______,       _______, _______, _______
+                                     //`-------------------------'      `-------------------------'
   ),
 
-  [_QWERT] = LAYOUT_ergodox(
-    // left hand side - main
-    KC_ESCAPE,        DE_1,         DE_2,       DE_3,       DE_4,       DE_5,       KC_ESCAPE,
-    KC_TAB,           DE_Q,         DE_W,       DE_E,       DE_R,       DE_T,       KC_NO /* NOOP */,
-    KC_LSFT,          DE_A,         DE_S,       DE_D,       DE_F,       DE_G,
-    KC_LSFT,          DE_Y,         DE_X,       DE_C,       DE_V,       DE_B,       KC_NO /* NOOP */,
-    KC_LCTL,          KC_LGUI,      KC_LALT,    KC_NO,      YL_FKEY,
-
-    // left hand side - thumb cluster
-                      KC_NO,        KC_NO,
-                                    KC_NO,
-    KC_SPACE,         KC_LALT,      KC_LCTL,
-
-    // right hand side - main
-    YL_NEO1,        DE_6,         DE_7,       DE_8,       DE_9,       DE_0,       DE_SS,
-    KC_NO,            DE_Z,         DE_U,       DE_I,       DE_O,       DE_P,       DE_UDIA,
-                      DE_H,         DE_J,       DE_K,       DE_L,       DE_ODIA,    DE_ADIA,
-    KC_NO /* NOOP */, DE_N,         DE_M,       DE_COMM,    DE_DOT,     DE_MINS,    KC_RSFT,
-                                    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,   KC_RGUI,
-
-    // right hand side - thumb cluster
-    KC_RALT,          KC_RCTL,
-    KC_NO,
-    KC_BSPC,          KC_ENTER,     KC_SPACE
+  [_QWERT] = LAYOUT_ergodox_pretty(
+ //,-------------------------------------------------------------.      ,-------------------------------------------------------------.
+     KC_ESC,    DE_1,    DE_2,    DE_3,    DE_4,    DE_5, _______,       YL_NEO1,    DE_6,    DE_7,    DE_8,    DE_9,    DE_0,   DE_SS,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+     KC_TAB,    DE_Q,    DE_W,    DE_E,    DE_R,    DE_T, _______,       _______,    DE_Z,    DE_U,    DE_I,    DE_O,    DE_P, DE_UDIA,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    KC_LSFT,    DE_A,    DE_S,    DE_D,    DE_F,    DE_G,                            DE_H,    DE_J,    DE_K,    DE_L, DE_ODIA, DE_ADIA,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    KC_LSFT,    DE_Y,    DE_X,    DE_C,    DE_V,    DE_B, _______,       _______,    DE_N,    DE_M, DE_COMM,  DE_DOT, DE_MINS, KC_RSFT,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    KC_LCTL, KC_LGUI, KC_LALT, _______, YL_FKEY,                                          _______,  _______, _______, _______, KC_RGUI,
+ //`-------------------------------------------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------'
+                                                 _______, _______,       KC_RALT, KC_RCTL,
+                                             //+--------+--------|      |       +--------+
+                                                          _______,       _______,
+                                     //,       |        |--------|      |-------|        |        |
+                                         KC_SPC, KC_LALT, KC_LCTL,       KC_BSPC,  KC_ENT,  KC_SPC
+                                     //`-------------------------'      `-------------------------'
   ),
 
-  [_FKEYS] = LAYOUT_ergodox(
-    // left hand side - main
-    KC_MEDIA_REWIND,        KC_F1,              KC_F2,              KC_F3,                KC_F4,              KC_F5,              KC_F11,
-    KC_MEDIA_PLAY_PAUSE,    _______,            _______,            _______,              _______,            _______,            _______,
-    KC_MEDIA_FAST_FORWARD,  _______,            _______,            _______,              _______,            _______,
-    _______,                _______,            _______,            _______,              _______,            _______,            _______,
-    _______,                _______,            _______,            _______,              _______,
-
-    // left hand side - thumb cluster
-                            _______,            _______,
-                                                _______,
-    _______,                _______,            _______,
-
-    // right hand side - main
-    KC_F12,                 KC_F6,              KC_F7,              KC_F8,                KC_F9,              KC_F10,             KC_AUDIO_VOL_UP,
-    _______,                _______,            _______,            _______,              _______,            _______,            KC_AUDIO_VOL_DOWN,
-                            _______,            _______,            _______,              _______,            _______,            KC_AUDIO_MUTE,
-    _______,                _______,            _______,            _______,              _______,            _______,            _______,
-                                                _______,            _______,              _______,            _______,            _______,
-
-    // right hand side - thumb cluster
-    _______,                _______,
-    _______,
-    _______,                _______,            _______
-  ),
+  [_FKEYS] = LAYOUT_ergodox_pretty(
+ //,-------------------------------------------------------------.      ,-------------------------------------------------------------.
+    KC_MPRV,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,  KC_F11,        KC_F12,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, KC_VOLU,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    KC_MPLY, _______, _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______, _______, KC_VOLD,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    KC_MNXT, _______, _______, _______, _______, _______,                         _______, _______, _______, _______, _______, KC_MUTE,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    _______, _______, _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______, _______, _______,
+ //|-------+--------+--------+--------+--------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------|
+    _______, _______, _______, _______, _______,                                          _______,  _______, _______, _______, _______,
+ //`-------------------------------------------+--------+--------|      |-------+--------+--------+--------+--------+--------+--------'
+                                                 _______, _______,       _______, _______,
+                                             //+--------+--------|      |       +--------+
+                                                          _______,       _______,
+                                     //,       |        |--------|      |-------|        |        |
+                                        _______, _______, _______,       _______, _______, _______
+                                     //`-------------------------'      `-------------------------'
+  )
 };
 
 // Special remapping for keys with different keycodes/macros when used with shift modifiers.
-bool process_record_user_shifted(uint16_t keycode, keyrecord_t *record) {
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   uint8_t active_modifiers = get_mods();
   uint8_t shifted = active_modifiers & MODS_SHIFT;
 
@@ -226,58 +170,58 @@ bool process_record_user_shifted(uint16_t keycode, keyrecord_t *record) {
     clear_mods();
 
     switch(keycode) {
-      case NEO2_1:
+      case N2_1:
         // degree symbol
         SEND_STRING(SS_LSFT("`"));
         break;
-      case NEO2_2:
+      case N2_2:
         // section symbol
         SEND_STRING(SS_LSFT("3"));
         break;
-      case NEO2_3:
+      case N2_3:
         SEND_STRING(SS_RALT("1"));
         break;
-      case NEO2_4:
+      case N2_4:
         // right angled quote
         SEND_STRING(SS_RALT("z"));
         break;
-      case NEO2_5:
+      case N2_5:
         // left angled quote
         SEND_STRING(SS_RALT("x"));
         break;
-      case NEO2_6:
+      case N2_6:
         // dollar sign
         SEND_STRING(SS_LSFT("4"));
         break;
-      case NEO2_7:
+      case N2_7:
         // euro sign
         SEND_STRING(SS_RALT("e"));
         break;
-      case NEO2_8:
+      case N2_8:
         // low9 double quote
         SEND_STRING(SS_RALT("v"));
         break;
-      case NEO2_9:
+      case N2_9:
         // left double quote
         SEND_STRING(SS_RALT("b"));
         break;
-      case NEO2_0:
+      case N2_0:
         // right double quote
         SEND_STRING(SS_RALT("n"));
         break;
-      case NEO2_MINUS:
+      case N2_MINS:
         // em dash
         SEND_STRING(SS_LSFT(SS_RALT("/")));
         break;
-      case NEO2_COMMA:
+      case N2_COMM:
         // en dash
         SEND_STRING(SS_RALT("/"));
         break;
-      case NEO2_DOT:
+      case N2_DOT:
         // bullet
         SEND_STRING(SS_RALT(","));
         break;
-      case NEO2_SHARP_S:
+      case N2_SS:
         // ẞ
         SEND_STRING(SS_LSFT(SS_RALT("s")));
         break;
@@ -290,46 +234,46 @@ bool process_record_user_shifted(uint16_t keycode, keyrecord_t *record) {
     return false;
   } else {
     switch(keycode) {
-      case NEO2_1:
+      case N2_1:
         SEND_STRING(SS_TAP(X_1));
         break;
-      case NEO2_2:
+      case N2_2:
         SEND_STRING(SS_TAP(X_2));
         break;
-      case NEO2_3:
+      case N2_3:
         SEND_STRING(SS_TAP(X_3));
         break;
-      case NEO2_4:
+      case N2_4:
         SEND_STRING(SS_TAP(X_4));
         break;
-      case NEO2_5:
+      case N2_5:
         SEND_STRING(SS_TAP(X_5));
         break;
-      case NEO2_6:
+      case N2_6:
         SEND_STRING(SS_TAP(X_6));
         break;
-      case NEO2_7:
+      case N2_7:
         SEND_STRING(SS_TAP(X_7));
         break;
-      case NEO2_8:
+      case N2_8:
         SEND_STRING(SS_TAP(X_8));
         break;
-      case NEO2_9:
+      case N2_9:
         SEND_STRING(SS_TAP(X_9));
         break;
-      case NEO2_0:
+      case N2_0:
         SEND_STRING(SS_TAP(X_0));
         break;
-      case NEO2_MINUS:
+      case N2_MINS:
         SEND_STRING(SS_TAP(X_SLASH));
         break;
-      case NEO2_COMMA:
+      case N2_COMM:
         SEND_STRING(SS_TAP(X_COMMA));
         break;
-      case NEO2_DOT:
+      case N2_DOT:
         SEND_STRING(SS_TAP(X_DOT));
         break;
-      case NEO2_SHARP_S:
+      case N2_SS:
         // ß
         SEND_STRING(SS_TAP(X_MINS));
         break;
@@ -346,23 +290,6 @@ bool process_record_user_shifted(uint16_t keycode, keyrecord_t *record) {
     return false;
   }
 }
-
-// Runs for each key down or up event.
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch(keycode) {
-    case YELDIR_AC:
-      if (record->event.pressed) {
-        register_code(KC_LALT);
-        register_code(KC_LCTL);
-      } else {
-        unregister_code(KC_LALT);
-        unregister_code(KC_LCTL);
-      }
-      break;
-  }
-
-  return process_record_user_shifted(keycode, record);
-};
 
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
