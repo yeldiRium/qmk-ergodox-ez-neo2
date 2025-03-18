@@ -280,24 +280,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 };
 
-// Send a key tap with a optional set of modifiers.
-void tap_with_modifiers(uint16_t keycode, uint8_t force_modifiers) {
-  uint8_t active_modifiers = get_mods();
-
-  if ((force_modifiers & MODS_SHIFT) && !(active_modifiers & MODS_SHIFT)) register_code(KC_LSFT);
-  if ((force_modifiers & MODS_CTRL) && !(active_modifiers & MODS_CTRL)) register_code(KC_LCTL);
-  if ((force_modifiers & MODS_ALT) && !(active_modifiers & MODS_ALT)) register_code(KC_LALT);
-  if ((force_modifiers & MODS_GUI) && !(active_modifiers & MODS_GUI)) register_code(KC_LGUI);
-
-  register_code(keycode);
-  unregister_code(keycode);
-
-  if ((force_modifiers & MODS_SHIFT) && !(active_modifiers & MODS_SHIFT)) unregister_code(KC_LSFT);
-  if ((force_modifiers & MODS_CTRL) && !(active_modifiers & MODS_CTRL)) unregister_code(KC_LCTL);
-  if ((force_modifiers & MODS_ALT) && !(active_modifiers & MODS_ALT)) unregister_code(KC_LALT);
-  if ((force_modifiers & MODS_GUI) && !(active_modifiers & MODS_GUI)) unregister_code(KC_LGUI);
-}
-
 // Special remapping for keys with different keycodes/macros when used with shift modifiers.
 bool process_record_user_shifted(uint16_t keycode, keyrecord_t *record) {
   uint8_t active_modifiers = get_mods();
@@ -494,13 +476,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   return process_record_user_shifted(keycode, record);
 };
-
-
-// Runs just one time when the keyboard initializes.
-void matrix_init_user(void) {
-
-};
-
 
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
