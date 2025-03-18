@@ -3,7 +3,6 @@
 #include "debug.h"
 #include "action_layer.h"
 #include "version.h"
-#include "layers.h"
 
 // State bitmap to track which key(s) enabled NEO_3 layer
 static uint8_t neo3_state = 0;
@@ -16,6 +15,13 @@ static uint8_t capslock_state = 0;
 #define MODS_CTRL   (MOD_BIT(KC_LCTL)|MOD_BIT(KC_RCTL))
 #define MODS_ALT    (MOD_BIT(KC_LALT)|MOD_BIT(KC_RALT))
 #define MODS_GUI    (MOD_BIT(KC_LGUI)|MOD_BIT(KC_RGUI))
+
+// Layers
+#define NEO_1   0      // layer_0
+#define NEO_3   1      // layer_1
+#define NEO_4   2      // layer_2
+#define DE_NORMAL    5      // layer_5
+#define FKEYS   6      // layer_6
 
 // Used to trigger macros / sequences of keypresses
 enum custom_keycodes {
@@ -41,56 +47,16 @@ enum custom_keycodes {
   NEO2_SHARP_S
 };
 
-#define NEO2_LMOD4                   MO(NEO_4)
-#define NEO2_RMOD4                   NEO2_LMOD4
-
-// Use _______ to indicate a key that is transparent / falling through to a lower level
-#define _______ KC_TRNS
+#define NEO2_LMOD4  MO(NEO_4)
+#define NEO2_RMOD4  NEO2_LMOD4
 
 // NEO_3 special characters
-#define NEO2_L3_CAPITAL_SS           RSA(DE_S)                   // ẞ
-#define NEO2_L3_CAPITAL_UE           S(DE_UDIA)                  // Ü
-#define NEO2_L3_CAPITAL_OE           S(DE_ODIA)                  // Ö
-#define NEO2_L3_CAPITAL_AE           S(DE_ADIA)                  // Ä
-#define NEO2_L3_SUPERSCRIPT_1        RALT(DE_1)                  // ¹
-#define NEO2_L3_SUPERSCRIPT_2        DE_SUP2                     // ²
-#define NEO2_L3_SUPERSCRIPT_3        DE_SUP3                     // ³
-#define NEO2_L3_ELLIPSIS             RALT(DE_DOT)                // …
-#define NEO2_L3_UNDERSCORE           DE_UNDS                     // _
-#define NEO2_L3_LBRACKET             DE_LBRC                     // [
-#define NEO2_L3_RBRACKET             DE_RBRC                     // ]
-#define NEO2_L3_CIRCUMFLEX           DE_CIRC                     // ^
-#define NEO2_L3_EXCLAMATION          DE_EXLM                     // !
-#define NEO2_L3_LESSTHAN             DE_LABK                     // <
-#define NEO2_L3_GREATERTHAN          DE_RABK                     // >
-#define NEO2_L3_EQUAL                DE_EQL                      // =
-#define NEO2_L3_AMPERSAND            DE_AMPR                     // &
-#define NEO2_L3_BSLASH               DE_BSLS                     // (backslash)
-#define NEO2_L3_SLASH                DE_SLSH                     // /
-#define NEO2_L3_CLBRACKET            DE_LCBR                     // {
-#define NEO2_L3_CRBRACKET            DE_RCBR                     // }
-#define NEO2_L3_ASTERISK             DE_ASTR                     // *
-#define NEO2_L3_QUESTIONMARK         DE_QUES                     // ?
-#define NEO2_L3_LPARENTHESES         DE_LPRN                     // (
-#define NEO2_L3_RPARENTHESES         DE_RPRN                     // )
-#define NEO2_L3_HYPHEN_MINUS         DE_MINS                     // -
-#define NEO2_L3_COLON                DE_COLN                     // :
-#define NEO2_L3_AT                   DE_AT                       // @
-#define NEO2_L3_HASH                 DE_HASH                     // #
-#define NEO2_L3_PIPE                 DE_PIPE                     // |
-#define NEO2_L3_TILDE                DE_TILD                     // ~
-#define NEO2_L3_BACKTICK             DE_GRV                      // `
-#define NEO2_L3_PLUS                 DE_PLUS                     // +
-#define NEO2_L3_PERCENT              DE_PERC                     // %
-#define NEO2_L3_DOUBLE_QUOTE         DE_DQUO                     // "
-#define NEO2_L3_SINGLE_QUOTE         DE_QUOT                     // '
-#define NEO2_L3_SEMICOLON            DE_SCLN                     // ;
+#define N2_ELL      RALT(DE_DOT)                // …
 
 // NEO_4 special characters
-#define NEO2_L3_MIDDLE_DOT           RALT(DE_COMM)               // ·
-#define NEO2_L3_INV_EXCLAMATION      RSA(DE_1)                   // ¡
-#define NEO2_L3_INV_QUESTIONMARK     RSA(DE_SS)                  // ¿
-#define NEO2_L3_DOLLAR               DE_DLR                      // $
+#define N2_MDOT     RALT(DE_COMM)               // ·
+#define N2_IEXC     RSA(DE_1)                   // ¡
+#define N2_IQUE     RSA(DE_SS)                  // ¿
 
 // My own special things
 #define YELDIR_MOVETABLEFT           LCTL(LSFT(KC_PGUP))
@@ -126,9 +92,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [NEO_3] = LAYOUT_ergodox(
     // left hand side - main
     _______,            _______,               _______,               _______,               _______,                    _______,                      _______,
-    _______,            NEO2_L3_ELLIPSIS,      NEO2_L3_UNDERSCORE,    NEO2_L3_LBRACKET,      NEO2_L3_RBRACKET,          NEO2_L3_CIRCUMFLEX,            YELDIR_MOVETABLEFT,
-    _______,            NEO2_L3_BSLASH,        NEO2_L3_SLASH,         NEO2_L3_CLBRACKET,     NEO2_L3_CRBRACKET,         NEO2_L3_ASTERISK,
-    _______,            NEO2_L3_HASH,          NEO2_L3_DOLLAR,        NEO2_L3_PIPE,          NEO2_L3_TILDE,             NEO2_L3_BACKTICK,              _______,
+    _______,            N2_ELL,      DE_UNDS,    DE_LBRC,      DE_RBRC,          DE_CIRC,            YELDIR_MOVETABLEFT,
+    _______,            DE_BSLS,        DE_SLSH,         DE_LCBR,     DE_RCBR,         DE_ASTR,
+    _______,            DE_HASH,          DE_DLR,        DE_PIPE,          DE_TILD,             DE_GRV,              _______,
     _______,            _______,               _______,               _______,               _______,
 
     // left hand side - thumb cluster
@@ -138,9 +104,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     // right hand side - main
     _______,            _______,               _______,               _______,               _______,                    _______,                      _______,
-    YELDIR_MOVETABRIGHT,NEO2_L3_EXCLAMATION,   NEO2_L3_LESSTHAN,      NEO2_L3_GREATERTHAN,   NEO2_L3_EQUAL,              NEO2_L3_AMPERSAND,            DE_EURO,
-                        NEO2_L3_QUESTIONMARK,  NEO2_L3_LPARENTHESES,  NEO2_L3_RPARENTHESES,  NEO2_L3_HYPHEN_MINUS,       NEO2_L3_COLON,                DE_AT,
-    _______,            NEO2_L3_PLUS,          NEO2_L3_PERCENT,       NEO2_L3_DOUBLE_QUOTE,  NEO2_L3_SINGLE_QUOTE,       NEO2_L3_SEMICOLON,            _______,
+    YELDIR_MOVETABRIGHT,DE_EXLM,   DE_LABK,      DE_RABK,   DE_EQL,              DE_AMPR,            DE_EURO,
+                        DE_QUES,  DE_LPRN,  DE_RPRN,  DE_MINS,       DE_COLN,                DE_AT,
+    _______,            DE_PLUS,          DE_PERC,       DE_DQUO,  DE_QUOT,       DE_SCLN,            _______,
                                                _______,               _______,               _______,                    _______,                      _______,
 
     // right hand side - thumb cluster
@@ -151,7 +117,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [NEO_4] = LAYOUT_ergodox(
     // left hand side - main
-    _______,            _______,                  _______,                  _______,              NEO2_L3_MIDDLE_DOT, _______,               _______,
+    _______,            _______,                  _______,                  _______,              N2_MDOT, _______,               _______,
     _______,            KC_PGUP,                  KC_BSPC,                  KC_UP,                KC_DELETE,          KC_PGDN,               _______,
     _______,            KC_HOME,                  KC_LEFT,                  KC_DOWN,              KC_RIGHT,           KC_END,
     _______,            KC_ESCAPE,                KC_TAB,                   KC_INSERT,            KC_ENTER,           _______,               _______,
@@ -163,68 +129,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,            _______,                  _______,
 
     // right hand side - main
-    _______,            _______,                   KC_TAB,                   NEO2_L3_SLASH,     DE_ASTR,         DE_MINS,              _______,
-    _______,            NEO2_L3_INV_EXCLAMATION,   KC_7,                     KC_8,              KC_9,            DE_PLUS,              _______,
-                        NEO2_L3_INV_QUESTIONMARK,  KC_4,                     KC_5,              KC_6,            DE_COMM,              DE_DOT,
-    _______,            NEO2_L3_COLON,             KC_1,                     KC_2,              KC_3,            NEO2_L3_SEMICOLON,    _______,
+    _______,            _______,                   KC_TAB,                   DE_SLSH,     DE_ASTR,         DE_MINS,              _______,
+    _______,            N2_IEXC,   KC_7,                     KC_8,              KC_9,            DE_PLUS,              _______,
+                        N2_IQUE,  KC_4,                     KC_5,              KC_6,            DE_COMM,              DE_DOT,
+    _______,            DE_COLN,             KC_1,                     KC_2,              KC_3,            DE_SCLN,    _______,
                                                   _______,                   KC_0,              _______,         _______,              _______,
 
     // right hand side - thumb cluster
     _______,            _______,
     _______,
     _______,            _______,                  _______
-  ),
-
-  [NEO_5] = LAYOUT_ergodox(
-    // left hand side - main
-    KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,   _______,
-    KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,   _______,
-    _______,            KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,
-    _______,            KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,   _______,
-    _______,            _______,            _______,            _______,              _______,
-
-    // left hand side - thumb cluster
-                        _______,            _______,
-                                            _______,
-    _______,            _______,            _______,
-
-    // right hand side - main
-    _______,            KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,
-    _______,            KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,
-                        KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,
-    _______,            KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,   _______,
-                                            _______,            _______,              _______,            _______,            _______,
-
-    // right hand side - thumb cluster
-    _______,            _______,
-    _______,
-    _______,            _______,            _______
-  ),
-
-  [NEO_6] = LAYOUT_ergodox(
-    // left hand side - main
-    KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,   _______,
-    KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,   _______,
-    _______,            KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,
-    _______,            KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,   _______,
-    _______,            _______,            _______,            _______,              _______,
-
-    // left hand side - thumb cluster
-                        _______,            _______,
-                                            _______,
-    _______,            _______,            _______,
-
-    // right hand side - main
-    _______,            KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,
-    _______,            KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,
-                        KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,
-    _______,            KC_NO /* NOOP */,   KC_NO /* NOOP */,   KC_NO /* NOOP */,     KC_NO /* NOOP */,   KC_NO /* NOOP */,   _______,
-                                            _______,            _______,              _______,            _______,            _______,
-
-    // right hand side - thumb cluster
-    _______,            _______,
-    _______,
-    _______,            _______,            _______
   ),
 
   [DE_NORMAL] = LAYOUT_ergodox(
@@ -293,9 +207,6 @@ bool process_record_user_shifted(uint16_t keycode, keyrecord_t *record) {
   if(shifted) {
     clear_mods();
 
-    // The sent keys here are all based on US layout. I.e. look up how to
-    // produce the key you want using the german qwertz, then look in
-    // keymap_german what you need to send to get that.
     switch(keycode) {
       case NEO2_1:
         // degree symbol
@@ -404,10 +315,10 @@ bool process_record_user_shifted(uint16_t keycode, keyrecord_t *record) {
         // ß
         SEND_STRING(SS_TAP(X_MINS));
         break;
-      case NEO2_L3_CIRCUMFLEX:
+      case DE_CIRC:
         SEND_STRING(SS_TAP(X_GRAVE) SS_TAP(X_SPACE));
         break;
-      case NEO2_L3_BACKTICK:
+      case DE_GRV:
         SEND_STRING(SS_LSFT("=") SS_TAP(X_SPACE));
         break;
       case YELDIR_CTLTAB:
